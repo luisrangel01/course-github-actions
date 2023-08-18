@@ -1,4 +1,5 @@
 name: hola-mundo #Nombre del workflow
+run-name: I'm learning GitHub Actions!
 on: [push] #evento que lo activará
 jobs: #Definición de los jobs
   hola-mundo: #Nombre del job
