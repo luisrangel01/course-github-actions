@@ -11,5 +11,7 @@ jobs: #Definición de los jobs
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Definir variable
+        run: echo "GHA_USERNAME=${{ github.actor }}" >> $GITHUB_ENV
       - name: Run index
         run: node index.js
