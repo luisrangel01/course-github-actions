@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - aprendiendo-github-actions
+      - main
 
 # Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 permissions:
@@ -66,9 +66,9 @@ jobs:
       # Update README to close <details id=4> and open <details id=5>
       # and set STEP to '5'
       - name: Actualizar a paso 5
-        uses: skills/action-update-step@v1
+        uses: skills/action-update-step@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 4
           to_step: 5
-          branch_name: aprendiendo-github-actions
+          branch_name: main
