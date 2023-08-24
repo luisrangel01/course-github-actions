@@ -1,26 +1,43 @@
-name: Expression
+name: Triggers
+run-name: Learning triggers
 on:
-    workflow_dispatch:
-        inputs:
-            edad:
-                description: 'Edad'
-                required: true
-                type: number
-            nombre:
-                description: 'Tu nombre'
-                required: true
-                default: 'Luis'
-                type: string
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "**.js"
+  issues:
+    types:
+      - labeled
+  workflow_dispatch:
+    inputs:
+      lenguaje_favorito:
+        description: "Lenguaje favorito"
+        default: JS
+        required: true
+        type: choice
+        options:
+          - Python
+          - C#
+          - JS
+      nombre:
+        description: "Tu Nombre"
+        required: true
+        default: Luis
+        type: string
+  schedule:
+    - cron: "15 22 * * *"
 jobs:
-    mayor:
-        if: ${{ inputs.edad >= 18 }}
-        runs-on: ubuntu-latest
-        steps:
-            - name : Correr script
-              run: echo ${{ inputs.nombre }} es mayor de edad
-    menor:
-        if: ${{ inputs.edad < 18 }}
-        runs-on: ubuntu-latest
-        steps:
-            - name : Correr script
-              run: echo ${{ inputs.nombre }} es menor de edad
+  hola-mundo-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Definir nombre
+        run: echo "USERNAME=${{ inputs.nombre }}" >> $GITHUB_ENV
+      - name: Definir lenguaje
+        run: echo "LANGUAGE=${{ inputs.lenguaje_favorito }}" >> $GITHUB_ENV
+      - name: Correr script
+        run: node index.js
