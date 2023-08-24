@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - aprendiendo-github-actions
 
 # Reference https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 permissions:
@@ -71,4 +71,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 2
           to_step: 3
-          branch_name: main
+          branch_name: aprendiendo-github-actions
